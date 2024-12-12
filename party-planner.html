@@ -3,9 +3,33 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Party Planner</title>
+    <script defer src="party-planner.js"></script>
 </head>
 <body>
-    
+    <form>
+        <input type="text" id="name" name="name" placeholder="Party Name">
+        <input type="date" id="date" name="date">
+        <input type="time" id="time" name="time">
+        <input type="text" id="location" name="location" placeholder="Location">
+        <input type="text" id="description" name="description" placeholder="Description">
+        <button type="submit" id="add">Add</button>
+    </form>
+    <table>
+        <thead>
+
+                <tr>
+                    <th>Party Name</th>
+                    <th>Date</th>
+                    <th>Time</th>
+                    <th>Location</th>
+                    <th>Description</th>
+                </tr>
+            </form>
+        </thead>
+        <tbody id="events">
+            <tr></tr>
+        </tbody>
+    </table>
 </body>
 </html>
