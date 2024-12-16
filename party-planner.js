@@ -19,6 +19,28 @@ const getEvents = async () => {
     }
 }
 
+async function postData(url = '', data = {}) {
+    const formData = new FormData(document.querySelector('form'));
+    const response = await fetch(url, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: formData
+    });
+    return response.json();
+  }
+
+const form = document.querySelector('form');
+console.log(form)
+form.addEventListener('submit', (event) => {
+  event.preventDefault();
+  postData(`${API_URL}/events`, form)
+    .then(data => {
+      console.log(data);
+    });
+});
+
 const deleteEvent = async (id) => {
     try {
         await fetch(`${API_URL}/events/${id}`, {
@@ -56,22 +78,25 @@ const createEventItem = (event) => {
     return eventContainer;
 };
 
-const eventForm = document.querySelector('form')
-eventForm.addEventListener('submit', (event) => {
-    event.preventDefault();
+// const eventForm = document.querySelector('form')
+// eventForm.addEventListener('submit', (event) => {
+//     event.preventDefault();
 
-    const formData = new FormData(eventForm);
-    const data = new URLSearchParams(formData);
-    data.id = Math.random();
+//     const formData = new FormData(eventForm);
+//     const data = new URLSearchParams(formData);
+//     data.id = Math.random();
 
-    console.log(JSON.stringify(data))
-    fetch(`${API_URL}/events`, {
-        method: 'POST',
-        body: data
-    }).then(res => res.json())
-    .then(data => console.log(data))
-    .catch(err => console.log(`Failed to add event with ID: ${data.id}`, err))
-})
+//     console.log(JSON.stringify(data))
+//     fetch(`${API_URL}/events`, {
+//         method: 'POST',
+//         body: data
+//     }).then(res => res.json())
+//     .then(data => console.log(data))
+//     .catch(err => console.log(`Failed to add event with ID: ${data.id}`, err))
+// })
+
+
+
 
 async function renderPage() {
     while (eventsContainer.children.length) {
